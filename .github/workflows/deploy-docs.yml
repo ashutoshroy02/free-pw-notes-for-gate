@@ -25,6 +25,18 @@ jobs:
           npm install
           npm run build
 
+      - name: Copy Subject Folders to Dist
+        run: |
+          # List of subject folders to include
+          subjects=("Algorithms" "Artificial Intelligence" "Calculas and Optimization" "Data Structure through Python" "Data Structurer and Algorithm" "Database Management System" "General Aptitude" "Linear Algebra" "Machine Learning" "Probability and Statics" "Python for Data Science" "Verbal Aptitude" "Warehousing")
+          
+          for s in "${subjects[@]}"; do
+            if [ -d "$s" ]; then
+              echo "Copying $s..."
+              cp -r "$s" web/dist/
+            fi
+          done
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
