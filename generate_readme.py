@@ -16,6 +16,9 @@ def generate_readme():
         "  </p>",
         "</div>",
         "",
+        "> [!IMPORTANT]",
+        "> **PDF PREVIEW TIP:** If GitHub says a file is \"too large to display\", click the link to open it directly in your browser's viewer, or click the **Download** button on the file page.",
+        "",
         "---",
         "",
         "## 📑 Table of Contents",
@@ -45,7 +48,8 @@ def generate_readme():
             # Handle files directly in the subject folder if any
             files = sorted([f for f in os.listdir(subject) if f.endswith('.pdf')])
             for f in files:
-                link = urllib.parse.quote(f"{subject}/{f}")
+                # Add ?raw=true to force native browser preview
+                link = urllib.parse.quote(f"{subject}/{f}") + "?raw=true"
                 readme_content.append(f"- 📄 [{f}](./{link})")
         else:
             for chapter in chapters:
@@ -58,7 +62,7 @@ def generate_readme():
                 # List PDF files in chapter
                 files = sorted([f for f in os.listdir(chapter_path) if f.endswith('.pdf')])
                 for f in files:
-                    link = urllib.parse.quote(f"{subject}/{chapter}/{f}")
+                    link = urllib.parse.quote(f"{subject}/{chapter}/{f}") + "?raw=true"
                     readme_content.append(f"  - 📄 **Notes:** [{f}](./{link})")
                 
                 # Check for DPP subfolder
@@ -70,7 +74,7 @@ def generate_readme():
                     readme_content.append("")
                     dpp_files = sorted([f for f in os.listdir(dpp_path) if f.endswith('.pdf')])
                     for f in dpp_files:
-                        link = urllib.parse.quote(f"{subject}/{chapter}/DPP/{f}")
+                        link = urllib.parse.quote(f"{subject}/{chapter}/DPP/{f}") + "?raw=true"
                         readme_content.append(f"  - ✍️ **DPP:** [{f}](./{link})")
                 
                 readme_content.append("</details>")
@@ -92,4 +96,4 @@ def generate_readme():
 
 if __name__ == "__main__":
     generate_readme()
-    print("Ultra-Premium README generated successfully!")
+    print("PDF-optimized README generated successfully!")
