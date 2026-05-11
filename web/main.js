@@ -4,12 +4,15 @@ const subjects = [
   { name: 'Algorithms', icon: '🧠', size: 'lg', path: 'Algorithms' },
   { name: 'Machine Learning', icon: '⚡', size: 'md', path: 'Machine Learning' },
   { name: 'Data Structures', icon: '📊', size: 'md', path: 'Data Structure through Python' },
-  { name: 'Artificial Intelligence', icon: '🤖', size: 'md', path: 'Artificial Intelligence' },
+  { name: 'AI & Logic', icon: '🤖', size: 'md', path: 'Artificial Intelligence' },
   { name: 'Linear Algebra', icon: '📈', size: 'lg', path: 'Linear Algebra' },
   { name: 'DBMS', icon: '🗄️', size: 'sm', path: 'Database Management System' },
   { name: 'Calculus', icon: '📐', size: 'sm', path: 'Calculas and Optimization' },
   { name: 'Aptitude', icon: '💡', size: 'sm', path: 'General Aptitude' },
-  { name: 'Stats', icon: '📉', size: 'sm', path: 'Probability and Statics' }
+  { name: 'Python DS', icon: '🐍', size: 'sm', path: 'Python for Data Science' },
+  { name: 'Statistics', icon: '📉', size: 'sm', path: 'Probability and Statics' },
+  { name: 'Warehousing', icon: '📦', size: 'sm', path: 'Warehousing' },
+  { name: 'Verbal', icon: '🗣️', size: 'sm', path: 'Verbal Aptitude' }
 ];
 
 const app = document.querySelector('#app');
@@ -46,9 +49,10 @@ const render = () => {
 };
 
 window.handleCardClick = (path) => {
-  // Use absolute path relative to the repository name on GitHub Pages
+  // Use absolute path with trailing slash for directory indexing
   const basePath = '/free-pw-notes-for-gate/';
-  window.open(window.location.origin + basePath + path, '_blank');
+  const url = window.location.origin + basePath + encodeURIComponent(path) + '/';
+  window.open(url, '_blank');
 };
 
 // Add mouse-move glow effect
